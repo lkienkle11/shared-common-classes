@@ -1,0 +1,72 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'com.microservices'
+version = '1.0-SNAPSHOT'
+
+java {
+    withSourcesJar()             // sinh source JAR
+//    toolchain {
+//        languageVersion = JavaLanguageVersion.of(21)
+//    }
+}
+
+// ** Thêm block repositories để Gradle biết lấy dependency từ đâu **
+repositories {
+    mavenLocal()                 // nếu bạn có dùng artifact local khác
+    mavenCentral()
+}
+
+dependencies {
+    // Chỉ thêm các dependency tối thiểu mà UserDetailsImpl cần
+    api 'org.springframework.security:spring-security-oauth2-core:6.4.4'
+    api 'com.fasterxml.jackson.core:jackson-annotations:2.17.0'
+
+    // Lombok nếu bạn dùng trong UserDetailsImpl
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+//            artifact sourcesJar     // thêm source JAR
+            pom {
+                name = 'User Principal'
+                description = 'Common class implementation of UserDetails for Spring Security'
+                url = 'https://github.com/lkienkle11/shared-common-classes.git'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'lkienkle11'
+                        name = 'lkienkle11'
+                        email = 'kiendeptrai2002@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/lkienkle11/shared-common-classes.git'
+                    developerConnection = 'scm:git:ssh://github.com/lkienkle11/shared-common-classes.git'
+                    url = 'https://github.com/lkienkle11/shared-common-classes.git'
+                }
+            }
+        }
+    }
+    repositories {
+        mavenLocal()               // cho publishToMavenLocal
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

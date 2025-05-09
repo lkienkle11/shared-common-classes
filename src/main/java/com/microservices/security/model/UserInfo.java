@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserInfo {
+public class UserInfo implements IAppUserInfo {
     private Long id;
 
     private String firstName;
@@ -36,11 +36,38 @@ public class UserInfo {
 
 //    private String password;
 
-    private boolean isEnabled;
+    private Boolean isEnabled;
+
+    private Boolean confirmed;
 
     private LocalDate dateOfBirth;
 
     private List<String> roles;
 
     private List<String> permissions;
+
+    @Override
+    public Long getUserId() {
+        return id;
+    }
+
+    @Override
+    public Boolean getGender() {
+        return gender;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public Boolean getIsEnabled() {
+        return isEnabled;
+    }
+
+    @Override
+    public Boolean getConfirmed() {
+        return confirmed == null || confirmed;
+    }
 }

@@ -54,6 +54,9 @@ public class UserPrincipal implements UserDetails {
     private boolean isEnabled;
 
     @JsonIgnore
+    private boolean isConfirmed;
+
+    @JsonIgnore
     private LocalDate dateOfBirth;
 
     private Collection<? extends GrantedAuthority> authorities;
@@ -79,6 +82,7 @@ public class UserPrincipal implements UserDetails {
                 .phoneNumber(user.getPhoneNumber())
                 .address(user.getAddress())
                 .dateOfBirth(user.getDateOfBirth())
+                .isConfirmed(user.getConfirmed())
                 .password(user.getPassword())
                 .isEnabled(Boolean.TRUE.equals(user.getIsEnabled()))
                 .authorities(authorities)

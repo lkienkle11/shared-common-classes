@@ -28,6 +28,8 @@ public interface IAppUserInfo {
 
     Boolean getIsEnabled();
 
+    Boolean getConfirmed();
+
     LocalDate getDateOfBirth();
 
     List<String> getRoles();

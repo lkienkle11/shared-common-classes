@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -69,5 +71,28 @@ public class UserInfo implements IAppUserInfo {
     @Override
     public Boolean getConfirmed() {
         return confirmed == null || confirmed;
+    }
+
+    public static UserInfo from(UserPrincipal p) {
+        List<String> roles = p.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .toList();
+
+        return UserInfo.builder()
+                .id(p.getId())
+                .userName(p.getUsername())
+                .firstName(p.getFirstName())
+                .lastName(p.getLastName())
+                .avatar(p.getAvatar())
+                .gender(p.isGender())
+                .userCode(p.getUserCode())
+                .email(p.getEmail())
+                .phoneNumber(p.getPhoneNumber())
+                .address(p.getAddress())
+                .isEnabled(true)
+                .dateOfBirth(p.getDateOfBirth())
+                .roles(roles)
+                .permissions(List.of())
+                .build();
     }
 }

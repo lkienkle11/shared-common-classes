@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
@@ -65,12 +66,12 @@ public class UserInfo implements IAppUserInfo {
 
     @Override
     public Boolean getIsEnabled() {
-        return isEnabled;
+        return Objects.isNull(isEnabled) || isEnabled;
     }
 
     @Override
     public Boolean getConfirmed() {
-        return confirmed == null || confirmed;
+        return Objects.isNull(confirmed) || confirmed;
     }
 
     public static UserInfo from(UserPrincipal p) {
@@ -89,7 +90,8 @@ public class UserInfo implements IAppUserInfo {
                 .email(p.getEmail())
                 .phoneNumber(p.getPhoneNumber())
                 .address(p.getAddress())
-                .isEnabled(true)
+                .isEnabled(p.isEnabled())
+                .confirmed(p.isConfirmed())
                 .dateOfBirth(p.getDateOfBirth())
                 .roles(roles)
                 .permissions(List.of())

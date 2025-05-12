@@ -82,7 +82,7 @@ public class UserPrincipal implements UserDetails {
                 .phoneNumber(user.getPhoneNumber())
                 .address(user.getAddress())
                 .dateOfBirth(user.getDateOfBirth())
-                .isConfirmed(user.getConfirmed())
+                .isConfirmed(Boolean.TRUE.equals(user.getConfirmed()))
                 .password(user.getPassword())
                 .isEnabled(Boolean.TRUE.equals(user.getIsEnabled()))
                 .authorities(authorities)

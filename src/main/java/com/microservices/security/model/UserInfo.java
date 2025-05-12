@@ -66,12 +66,12 @@ public class UserInfo implements IAppUserInfo {
 
     @Override
     public Boolean getIsEnabled() {
-        return Objects.isNull(isEnabled) || isEnabled;
+        return !Objects.isNull(isEnabled) && isEnabled;
     }
 
     @Override
     public Boolean getConfirmed() {
-        return Objects.isNull(confirmed) || confirmed;
+        return !Objects.isNull(confirmed) && confirmed;
     }
 
     public static UserInfo from(UserPrincipal p) {

@@ -29,6 +29,8 @@ public class UserInfo implements IAppUserInfo {
 
     private boolean gender;
 
+    private String userTz;
+
     private String userCode;
 
     private String email;
@@ -86,6 +88,7 @@ public class UserInfo implements IAppUserInfo {
                 .lastName(p.getLastName())
                 .avatar(p.getAvatar())
                 .gender(p.isGender())
+                .userTz(p.getUserTz())
                 .userCode(p.getUserCode())
                 .email(p.getEmail())
                 .phoneNumber(p.getPhoneNumber())

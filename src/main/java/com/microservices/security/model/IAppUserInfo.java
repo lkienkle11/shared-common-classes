@@ -14,6 +14,8 @@ public interface IAppUserInfo {
 
     String getAvatar();
 
+    String getUserTz();
+
     Boolean getGender();
 
     String getUserCode();

@@ -1,4 +1,4 @@
-package com.microservices.security.model;
+package com.microservices.dto.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

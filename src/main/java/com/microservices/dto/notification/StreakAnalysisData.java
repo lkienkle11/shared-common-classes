@@ -3,7 +3,6 @@ package com.microservices.dto.notification;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
 import java.util.Map;
 
 @Data
@@ -11,12 +10,9 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class StreakNotificationData {
-    String message;
-
-    Long userId;
-
+public class StreakAnalysisData {
+    Map<String, Object> userInfo;
+    String userTz;
+    String clientDate;
     Long currentStreak;
-
-    LocalDate lastDateLearned;
 }

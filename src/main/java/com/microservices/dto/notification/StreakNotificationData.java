@@ -19,4 +19,6 @@ public class StreakNotificationData {
     Long currentStreak;
 
     LocalDate lastDateLearned;
+
+    Map<String, Object> payload;
 }

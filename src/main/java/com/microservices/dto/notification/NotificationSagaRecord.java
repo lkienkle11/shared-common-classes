@@ -12,7 +12,7 @@ import java.time.Duration;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NotificationSagaRecord {
     String                 sagaId;   // UUID
-    Long                   userId;
+    String                 userId;
     StreakNotificationData payload;  // giữ lại để retry / đền bù
     Integer                attempt;  // số lần gửi
     Long                   expireAt; // epoch millis timeout

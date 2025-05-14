@@ -14,7 +14,7 @@ import java.util.Map;
 public class StreakNotificationData {
     String message;
 
-    Long userId;
+    String userId;
 
     Long currentStreak;
 

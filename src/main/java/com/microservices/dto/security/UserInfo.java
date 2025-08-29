@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +16,10 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserInfo implements IAppUserInfo {
+public class UserInfo implements IAppUserInfo, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private Long id;
 
     private String firstName;
